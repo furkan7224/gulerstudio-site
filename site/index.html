@@ -3,97 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Güler Studio: mobil oyunlar</title>
-  <meta name="description" content="Güler Studio'nun mobil oyunları: Gece Avcıları ve Büyük Yemin. Mağaza linkleri ve beta testine katılım.">
-  <meta name="theme-color" content="#eceef1">
+  <title>Güler Studio: hikâye odaklı mobil oyunlar</title>
+  <meta name="description" content="Güler Studio'nun mobil oyunları: Büyük Yemin ve Gece Avcıları. Mağazadan indir ya da Android kapalı betaya katıl.">
+  <meta name="theme-color" content="#0d0d0f">
   <link rel="canonical" href="https://gulerstudio.dev/">
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Güler Studio">
-  <meta property="og:description" content="Gece Avcıları ve Büyük Yemin. Oyunları indir ya da beta testine katıl.">
+  <meta property="og:description" content="Büyük Yemin ve Gece Avcıları. Oyunları indir ya da betaya katıl.">
   <meta property="og:url" content="https://gulerstudio.dev/">
   <meta property="og:image" content="https://gulerstudio.dev/img/og.png">
   <meta property="og:locale" content="tr_TR">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="preload" href="fonts/bricolage-grotesque-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/stil.css">
+  <link rel="preload" href="/fonts/bricolage-grotesque-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/stil.css">
 </head>
 <body>
   <a class="atla" href="#oyunlar">İçeriğe geç</a>
 
-  <header class="ust kabuk">
-    <a class="logo" href="/" aria-label="Güler Studio ana sayfa">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 11.5a7.5 7.5 0 1 0 1.2 6.5H16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-      <span>Güler Studio</span>
-    </a>
-    <nav aria-label="Ana menü">
-      <a href="#oyunlar">Oyunlar</a>
-      <a href="#beta">Beta testi</a>
-      <a href="#iletisim">İletişim</a>
+  <header class="bas kabuk">
+    <p class="isaret" aria-hidden="true">GÜLER</p>
+    <h1 id="studyo-ad">Güler Studio</h1>
+    <p class="slogan" id="slogan"></p>
+    <p class="bas-linkler" id="bas-linkler"></p>
+
+    <nav class="atlama" aria-label="Oyunlar">
+      <ul id="atlama"></ul>
     </nav>
   </header>
 
-  <main>
-    <section class="giris kabuk" aria-labelledby="giris-baslik">
-      <h1 id="giris-baslik" class="dev-yazi">Güler<br>Studio</h1>
-      <div class="giris-yan">
-        <p class="giris-metin">Telefon için hikâyesi olan oyunlar yapıyoruz. Şu an iki oyunumuz var ve ikisi de test aşamasında. Erkenden oynamak istersen beta testine katılabilirsin.</p>
-        <ul class="giris-liste" id="giris-liste" aria-label="Oyunlar"></ul>
-      </div>
-    </section>
-
-    <div id="oyunlar" class="oyunlar" tabindex="-1">
-      <noscript><p class="kabuk">Oyun listesini görmek için JavaScript'i aç.</p></noscript>
-    </div>
-
-    <section id="beta" class="beta kabuk" aria-labelledby="beta-baslik">
-      <div class="beta-bas">
-        <h2 id="beta-baslik">Beta testine katıl</h2>
-        <p>Oyunları mağazaya çıkmadan önce oynayıp hataları bize bildirebilirsin. Telefonuna uygun linki seç.</p>
-      </div>
-
-      <div class="beta-tablo" role="table" aria-label="Açık beta testleri">
-        <div class="beta-satir beta-satir--bas" role="row">
-          <span role="columnheader">Oyun</span>
-          <span role="columnheader">iPhone (TestFlight)</span>
-          <span role="columnheader">Android (Google Play)</span>
-        </div>
-        <div id="beta-satirlar" role="rowgroup"></div>
-      </div>
-
-      <div class="nasil">
-        <div>
-          <h3>iPhone'da nasıl katılırım?</h3>
-          <ol>
-            <li>App Store'dan Apple'ın ücretsiz <strong>TestFlight</strong> uygulamasını indir.</li>
-            <li>Yukarıdaki TestFlight linkini iPhone'unda aç.</li>
-            <li>“Testi Kabul Et” ve ardından “Yükle”ye dokun.</li>
-          </ol>
-        </div>
-        <div>
-          <h3>Android'de nasıl katılırım?</h3>
-          <ol>
-            <li>Google Play linkini, Play Store'da kullandığın hesapla aç.</li>
-            <li>“Test kullanıcısı ol” düğmesine dokun.</li>
-            <li>Birkaç dakika sonra Play Store'dan oyunu yükle.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+  <main id="oyunlar" tabindex="-1">
+    <noscript><p class="kabuk">Oyunları görmek için JavaScript'i aç.</p></noscript>
   </main>
 
-  <footer id="iletisim" class="alt kabuk">
-    <div>
-      <h2>Bize yaz</h2>
-      <p>Hata bildirimi, öneri ya da iş birliği için:</p>
-      <a class="eposta" id="eposta" href="mailto:iletisim@gulerstudio.dev">iletisim@gulerstudio.dev</a>
-    </div>
-    <p class="telif">© <span id="yil">2026</span> Güler Studio</p>
+  <footer class="alt kabuk">
+    <p>© <span id="yil">2026</span> Güler Studio</p>
+    <ul class="alt-linkler" id="alt-linkler"></ul>
   </footer>
 
-  <script src="js/oyunlar.js"></script>
-  <script src="js/site.js"></script>
+  <script src="/js/oyunlar.js"></script>
+  <script src="/js/site.js"></script>
 </body>
 </html>

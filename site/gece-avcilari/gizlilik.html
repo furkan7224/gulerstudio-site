@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gece Avcıları · Gizlilik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, formal legal page with the game's night atmosphere
+   IDEA: a page from a hunter's journal held under moonlight
+   PICTURE: the gold seal emblem in a dark band at the top
+   COLOUR and TYPE: night ink ground, parchment text, one gold accent; Cinzel titles, Spectral body
+   LAYOUT: one readable column, language switch, sections with short headings */
+:root{color-scheme:light dark;--bg:light-dark(#f6f1e6,#070b11);--panel:light-dark(#fffdf7,#0e1520);--ink:light-dark(#1d1a14,#e9e2cf);--mute:light-dark(#5c5547,#a79f8c);--gold:light-dark(#8a6326,#d9b46c);--rule:light-dark(#e2d8c3,#223042)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Spectral,Georgia,serif;overflow-x:clip}
+.hero{background:radial-gradient(ellipse at 50% 0,#1d2a3b,#05080c 75%);color:#f3e6c2;padding:clamp(36px,6vw,72px) max(5vw,16px) clamp(28px,4vw,48px);text-align:center}
+.hero svg{width:clamp(110px,22vw,160px);height:auto;display:block;margin:0 auto 18px}
+.hero h1{font:700 clamp(30px,5vw,46px)/1.08 Cinzel,serif;margin:0 0 8px;text-wrap:balance;color:#f3dfae}
+.hero p{margin:0;color:#b9b19c;font-style:italic}
+.sw{display:inline-flex;gap:4px;margin-top:22px;padding:4px;border:1px solid #c9a45c66;border-radius:30px}
+.sw button{font:700 13px/1 Cinzel,serif;letter-spacing:.06em;min-height:40px;min-width:64px;border:0;border-radius:24px;background:transparent;color:#bdb59f;cursor:pointer}
+.sw button[aria-pressed=true]{background:linear-gradient(180deg,#f6e2ae,#c9a45c);color:#1a1206}
+.sw button:focus-visible{outline:2px solid #f6e2ae;outline-offset:2px}
+main{max-width:760px;margin:0 auto;padding:clamp(24px,4vw,48px) max(5vw,16px) 64px}
+article[hidden]{display:none}
+.meta{color:var(--mute);font-size:15px;margin:0 0 28px}
+h2{font:600 21px/1.25 Cinzel,serif;color:var(--gold);margin:34px 0 10px}
+p,li{margin:0 0 12px}
+ul{padding-inline-start:22px;margin:0 0 12px}
+.box{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;margin:16px 0}
+a{color:var(--gold)}
+code{overflow-wrap:anywhere}
+.fill{background:light-dark(#fbe7b8,#3a2c10);padding:1px 6px;border-radius:4px}
+footer{border-top:1px solid var(--rule);color:var(--mute);font-size:14px;text-align:center;padding:20px 16px 36px}
+</style>
+</head>
+<body>
+<header class="hero">
+<svg viewBox="0 0 200 200" role="img" aria-label="Gece Avcıları mührü">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff2c8"/><stop offset=".5" stop-color="#c9a45c"/><stop offset="1" stop-color="#8a6326"/></linearGradient>
+<radialGradient id="m" cx="40%" cy="38%" r="65%"><stop offset="0" stop-color="#fffaea"/><stop offset="1" stop-color="#b89a5c"/></radialGradient></defs>
+<circle cx="100" cy="100" r="92" fill="#070b11" stroke="url(#g)" stroke-width="5"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="url(#g)" stroke-width="1.5"/>
+<circle cx="100" cy="100" r="66" fill="none" stroke="url(#g)" stroke-width="3"/>
+<path d="M100 34 L138.8 153.4 L37.2 79.6 H162.8 L61.2 153.4 Z" fill="none" stroke="url(#g)" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="100" cy="102" r="22" fill="url(#m)"/>
+</svg>
+<h1 id="ttl">Gizlilik Politikası</h1>
+<p id="sub">Gece Avcıları · Night Hunters</p>
+<div class="sw" role="group" aria-label="Dil / Language">
+<button id="b-tr" aria-pressed="true">TR</button><button id="b-en" aria-pressed="false">EN</button>
+</div>
+</header>
+<main>
+<article id="tr" lang="tr">
+<p class="meta">Yürürlük tarihi: 20 Kasım 2026</p>
+<p>Bu politika, iOS ve Android için yayımlanan <b>Gece Avcıları</b> oyununun ("Oyun") hangi verileri işlediğini açıklar. Oyunu geliştiren ve yayımlayan: <b>Guler Game Studios</b> (Furkan Güler) ("biz").</p>
+
+<h2>Kısaca</h2>
+<div class="box"><ul>
+<li>Hesap açmanız gerekmez; adınızı, e-postanızı veya telefon numaranızı istemeyiz.</li>
+<li>Oyun ilerlemeniz yalnızca kendi cihazınızda saklanır; bizim sunucumuza gönderilmez.</li>
+<li>Oyunda Google AdMob reklamları gösterilir (aracılıkla Unity Ads ve Liftoff dahil). Google ve bu ortaklar, reklam göstermek için cihazınızdan bazı verileri toplayabilir.</li>
+</ul></div>
+
+<h2>Cihazınızda saklanan veriler</h2>
+<p>Avcı adınız, oyun ilerlemeniz, ayarlarınız ve telsiz sohbet geçmişiniz yalnızca cihazınızın yerel depolamasında tutulur. Bu verilere biz erişemeyiz. Oyunu sildiğinizde bu veriler de silinir.</p>
+
+<h2>Reklamlar ve Google AdMob</h2>
+<p>Oyun ücretsizdir ve Google LLC'nin AdMob hizmetiyle reklam gösterir. Google Mobile Ads SDK; IP adresi (yaklaşık konumu tahmin etmek için), cihaz ve reklam kimlikleri, gösterilen reklamlarla ilgili veriler, uygulama içi etkileşimler ve çökme ile performans gibi tanı verilerini toplayabilir. Bu veriler reklam gösterimi, ölçüm, analiz ve dolandırıcılık önleme amacıyla kullanılır ve Google'ın gizlilik politikasına tabidir.</p>
+<p>AdMob, reklamları daha iyi doldurmak için aracılık (mediation) yoluyla şu reklam ortaklarından da reklam isteyebilir: <b>Unity Ads</b> (Unity Technologies) ve <b>Liftoff Monetize</b> (Liftoff Mobile, eski adıyla Vungle). Bu ortakların SDK'ları da yukarıdakilere benzer cihaz, reklam ve tanı verilerini aynı amaçlarla toplayabilir. Unity gizlilik politikası: <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">unity.com/legal/game-player-and-app-user-privacy-policy</a> · Liftoff gizlilik politikası: <a href="https://liftoff.io/privacy-policy/">liftoff.io/privacy-policy</a></p>
+<ul>
+<li><b>iOS:</b> Kişiselleştirilmiş reklam için Apple'ın Uygulama Takip Şeffaflığı izniyle size sorulur. İzin vermezseniz reklamlar kişiselleştirilmeden gösterilir. Kararınızı Ayarlar › Gizlilik ve Güvenlik › Takip bölümünden değiştirebilirsiniz.</li>
+<li><b>Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre:</b> İlk açılışta Google'ın izin formu gösterilir; reklam tercihlerinizi buradan belirlersiniz.</li>
+<li><b>Android:</b> Reklam kimliğinizi Ayarlar › Gizlilik › Reklamlar bölümünden sıfırlayabilir veya silebilirsiniz.</li>
+</ul>
+<p>Google'ın verileri nasıl kullandığı: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a> · Google Gizlilik Politikası: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></p>
+
+<h2>Çocuklar</h2>
+<p>Oyun korku temaları içerir ve 13 yaşın altındaki çocuklara yönelik değildir. 13 yaşından küçük çocuklardan bilerek kişisel veri toplamayız.</p>
+
+<h2>Haklarınız</h2>
+<p>Biz sizinle ilgili kişisel veri saklamadığımız için silinecek bir hesap yoktur; oyunu silmeniz yeterlidir. KVKK veya GDPR kapsamındaki talepleriniz ya da sorularınız için bize yazabilirsiniz. Google tarafından işlenen veriler için Google'ın hesap ve reklam ayarlarını kullanabilirsiniz.</p>
+
+<h2>Değişiklikler</h2>
+<p>Bu politikayı güncelleyebiliriz. Güncel metin her zaman bu sayfada, yürürlük tarihiyle birlikte yayımlanır.</p>
+
+<h2>İletişim</h2>
+<p>E-posta: <a href="mailto:furkan.glr1@outlook.com">furkan.glr1@outlook.com</a></p>
+</article>
+
+<article id="en" lang="en" hidden>
+<p class="meta">Effective date: November 20, 2026</p>
+<p>This policy explains what data the <b>Night Hunters (Gece Avcıları)</b> game ("the Game") for iOS and Android processes. Developer and publisher: <b>Guler Game Studios</b> (Furkan Güler) ("we").</p>
+
+<h2>In short</h2>
+<div class="box"><ul>
+<li>No account is needed; we never ask for your name, email or phone number.</li>
+<li>Your game progress is stored only on your own device and is never sent to our servers.</li>
+<li>The Game shows ads from Google AdMob (including Unity Ads and Liftoff via mediation). Google and these partners may collect some data from your device to serve ads.</li>
+</ul></div>
+
+<h2>Data stored on your device</h2>
+<p>Your hunter name, game progress, settings and radio chat history are kept only in your device's local storage. We cannot access them. Deleting the Game deletes this data.</p>
+
+<h2>Ads and Google AdMob</h2>
+<p>The Game is free and shows ads through AdMob, a service of Google LLC. The Google Mobile Ads SDK may collect your IP address (used to estimate approximate location), device and advertising identifiers, data about the ads shown, in-app interactions, and diagnostic data such as crashes and performance. This data is used for serving and measuring ads, analytics and fraud prevention, and is subject to Google's privacy policy.</p>
+<p>To fill ads better, AdMob may also request ads through mediation from these ad partners: <b>Unity Ads</b> (Unity Technologies) and <b>Liftoff Monetize</b> (Liftoff Mobile, formerly Vungle). Their SDKs may collect similar device, advertising and diagnostic data for the same purposes. Unity privacy policy: <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">unity.com/legal/game-player-and-app-user-privacy-policy</a> · Liftoff privacy policy: <a href="https://liftoff.io/privacy-policy/">liftoff.io/privacy-policy</a></p>
+<ul>
+<li><b>iOS:</b> You are asked through Apple's App Tracking Transparency prompt before personalized ads. If you decline, ads are shown without personalization. You can change this in Settings › Privacy &amp; Security › Tracking.</li>
+<li><b>European Economic Area, UK and Switzerland:</b> Google's consent form is shown on first launch, where you set your ad choices.</li>
+<li><b>Android:</b> You can reset or delete your advertising ID in Settings › Privacy › Ads.</li>
+</ul>
+<p>How Google uses data: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a> · Google Privacy Policy: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></p>
+
+<h2>Children</h2>
+<p>The Game contains horror themes and is not directed at children under 13. We do not knowingly collect personal data from children under 13.</p>
+
+<h2>Your rights</h2>
+<p>Because we store no personal data about you, there is no account to delete; uninstalling the Game is enough. For requests or questions under GDPR or other privacy laws, contact us. For data processed by Google, use Google's account and ad settings.</p>
+
+<h2>Changes</h2>
+<p>We may update this policy. The current version is always published on this page with its effective date.</p>
+
+<h2>Contact</h2>
+<p>Email: <a href="mailto:furkan.glr1@outlook.com">furkan.glr1@outlook.com</a></p>
+</article>
+</main>
+<footer>© 2026 Gece Avcıları · Night Hunters</footer>
+<script>
+{
+const T={tr:["Gizlilik Politikası","tr"],en:["Privacy Policy","en"]};
+const set=l=>{for(const k of ["tr","en"]){document.getElementById(k).hidden=k!==l;document.getElementById("b-"+k).setAttribute("aria-pressed",k===l)}document.getElementById("ttl").textContent=T[l][0];document.documentElement.lang=l;if(location.hash!=="#"+l)history.replaceState(null,"","#"+l)};
+document.getElementById("b-tr").addEventListener("click",()=>set("tr"));
+document.getElementById("b-en").addEventListener("click",()=>set("en"));
+const pick=()=>set(location.hash==="#en"?"en":location.hash==="#tr"?"tr":((navigator.language||"tr").toLowerCase().startsWith("tr")?"tr":"en"));
+window.addEventListener("hashchange",pick);pick();
+}
+</script>
+</body>
+</html>

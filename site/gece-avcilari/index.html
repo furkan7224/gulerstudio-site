@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gece Avcıları · Night Hunters</title>
+<style>
+body{margin:0;background:#05080c;color:#d9d2c3;font:16px/1.6 Georgia,serif}
+main{max-width:640px;margin:0 auto;padding:48px 22px}
+h1{color:#e0b85a;font-weight:normal;letter-spacing:.04em;margin:0 0 4px}
+h2{color:#e0b85a;font-weight:normal;font-size:1.15em;margin-top:32px}
+.sub{color:#8f8a7e;margin:0 0 28px}
+a{color:#e0b85a}
+.lang{float:right;font-size:.9em}
+article[hidden]{display:none}
+footer{margin-top:48px;color:#6f6b62;font-size:.85em}
+</style>
+</head>
+<body>
+<main>
+<nav class="lang"><a href="#tr">Türkçe</a> · <a href="#en">English</a></nav>
+<article id="tr" lang="tr">
+<h1>Gece Avcıları</h1>
+<p class="sub">Doğaüstü avcılık ve gizem · iOS ve Android</p>
+<p>Siyah klasik araban, sahte rozetlerin ve bagajındaki silahlarla dünyanın dört bir yanından gelen vakaları çöz. İpuçlarını topla, yaratığı teşhis et ve ortağınla avla.</p>
+<h2>Destek</h2>
+<p>Bir sorun mu yaşadın ya da önerin mi var? Bize yaz: <a href="mailto:furkan.glr1@outlook.com">furkan.glr1@outlook.com</a></p>
+<p>E-postana cihaz modelini ve sorunun nerede olduğunu eklersen daha hızlı yardımcı olabiliriz.</p>
+<h2>Sık sorulanlar</h2>
+<p><b>İlerlemem nerede saklanıyor?</b> Yalnızca cihazında. Hesap gerekmez. Oyunu silersen ilerleme de silinir.</p>
+<p><b>Dili nasıl değiştiririm?</b> Ekranın sağ üstündeki TR / EN düğmesiyle.</p>
+<p><b>Reklamlar</b> Bir vaka bittikten sonra reklam çıkabilir. Ödüllü reklamlar isteğe bağlıdır.</p>
+<p><a href="gizlilik.html#tr">Gizlilik politikası</a></p>
+</article>
+<article id="en" lang="en" hidden>
+<h1>Night Hunters</h1>
+<p class="sub">Supernatural mystery hunts · iOS and Android</p>
+<p>With a black classic car, fake badges and a trunk full of weapons, take on cases from all over the world. Gather clues, diagnose the creature and hunt it with your partner.</p>
+<h2>Support</h2>
+<p>Found a problem or have a suggestion? Write to us: <a href="mailto:furkan.glr1@outlook.com">furkan.glr1@outlook.com</a></p>
+<p>Including your device model and where the problem happened helps us help you faster.</p>
+<h2>FAQ</h2>
+<p><b>Where is my progress saved?</b> Only on your device. No account is needed. Deleting the game also deletes your progress.</p>
+<p><b>How do I change the language?</b> Use the TR / EN button at the top right of the screen.</p>
+<p><b>Ads</b> An ad may appear after a case ends. Rewarded ads are optional.</p>
+<p><a href="gizlilik.html#en">Privacy policy</a></p>
+</article>
+<footer>© 2026 Guler Game Studios</footer>
+</main>
+<script>
+const pick=()=>{const l=location.hash==="#en"?"en":location.hash==="#tr"?"tr":((navigator.language||"tr").toLowerCase().startsWith("tr")?"tr":"en");for(const k of["tr","en"])document.getElementById(k).hidden=k!==l;document.documentElement.lang=l};
+addEventListener("hashchange",pick);pick();
+</script>
+</body>
+</html>
