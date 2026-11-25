@@ -44,10 +44,10 @@ window.SITE = {
       ],
       linkler: {
         appStore: "https://apps.apple.com/tr/app/id6830630846",
-        googlePlay: "",
+        googlePlay: "https://play.google.com/store/apps/details?id=com.gulergamestudios.buyukyemin",
         testflight: ""
       },
-      androidBeta: true,
+      androidBeta: false,
       gizlilik: "/gizlilik.html",
       destek: ""
     },
