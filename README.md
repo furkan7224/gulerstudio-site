@@ -38,6 +38,11 @@ Formdan gelen adresler sunucuda `/data/beta-kayitlari.json` dosyasına yazılır
 
 - Listeyi indir: **https://gulerstudio.dev/yonetim/beta.csv** (kullanıcı adı önemsiz, şifre `BETA_SIFRE`)
 - Tek oyun: `https://gulerstudio.dev/yonetim/beta.csv?oyun=buyuk-yemin`
+- **Google Sheets:** Coolify'da `SHEETS_WEBHOOK` tanımlıysa her yeni kayıt anında
+  "Gece Avcıları Beta Başvuruları" tablosuna düşer. Değer, tablonun Uzantılar → Apps Script
+  projesindeki web uygulaması dağıtımının URL'sidir (`https://script.google.com/macros/s/.../exec`).
+  Sunucu her açılışta mevcut kayıtları da gönderir; tablo aynı adresi iki kez eklemez.
+  Bu URL'yi repoya yazma, sadece Coolify'da tut.
 - CSV'deki e-postaları Play Console → Test → Kapalı test → **Test kullanıcıları** listesine yapıştır
   (ya da bir Google Grubu kullanıyorsan gruba ekle).
 

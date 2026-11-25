@@ -6,6 +6,9 @@
 //   VERI_DIZINI     kayıtların tutulduğu klasör (varsayılan /data; Coolify'da kalıcı depolama olarak bağla)
 //   BETA_SIFRE      /yonetim/beta.csv için şifre (boşsa yönetim sayfası kapalı)
 //   BETA_WEBHOOK    (isteğe bağlı) yeni kayıtta bildirim için Discord webhook URL'si
+//   SHEETS_WEBHOOK  (isteğe bağlı) Google Sheets'e yazan Apps Script web uygulaması URL'si.
+//                   Her yeni kayıt anında gönderilir; sunucu açılırken mevcut kayıtlar da
+//                   bir kez gönderilir (tablo aynı adresi iki kez eklemez).
 
 "use strict";
 
@@ -21,6 +24,7 @@ const VERI_DIZINI = process.env.VERI_DIZINI || "/data";
 const KAYIT_DOSYASI = path.join(VERI_DIZINI, "beta-kayitlari.json");
 const BETA_SIFRE = process.env.BETA_SIFRE || "";
 const BETA_WEBHOOK = process.env.BETA_WEBHOOK || "";
+const SHEETS_WEBHOOK = process.env.SHEETS_WEBHOOK || "";
 
 const TURLER = {
   ".html": "text/html; charset=utf-8",
@@ -90,6 +94,24 @@ function kayitlariYaz() {
     await fsp.rename(gecici, KAYIT_DOSYASI);
   });
   return yazmaZinciri;
+}
+
+// ── Google Sheets'e gönderim. Başarısız olursa kayıt yine dosyada durur;
+// bir sonraki yeniden başlatmada bütün liste tekrar gönderilir.
+async function sheeteGonder(liste) {
+  if (!SHEETS_WEBHOOK.startsWith("https://") || !liste.length) return;
+  try {
+    const yanit = await fetch(SHEETS_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kayitlar: liste }),
+      redirect: "follow",
+      signal: AbortSignal.timeout(20000)
+    });
+    if (!yanit.ok) console.error("Sheets gönderimi başarısız: HTTP", yanit.status);
+  } catch (e) {
+    console.error("Sheets gönderimi başarısız:", e.message);
+  }
 }
 
 // ── Basit hız sınırı: IP başına 10 dakikada 12 istek
@@ -163,6 +185,8 @@ async function betaKaydi(req, res) {
     console.error("Kayıt yazılamadı:", e.message);
     return json(res, 500, { hata: "Kayıt şu an alınamıyor. Biraz sonra tekrar dene." });
   }
+
+  sheeteGonder([kayit]);
 
   if (BETA_WEBHOOK.startsWith("https://")) {
     const toplam = kayitlar.filter((k) => k.oyun === oyun).length;
@@ -270,6 +294,7 @@ const sunucu = http.createServer(async (req, res) => {
 
 kayitlariYukle().then(() => {
   sunucu.listen(PORT, () => console.log(`Güler Studio sitesi ${PORT} portunda çalışıyor`));
+  sheeteGonder(kayitlar);
 });
 
 for (const s of ["SIGTERM", "SIGINT"]) {
