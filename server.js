@@ -24,7 +24,9 @@ const VERI_DIZINI = process.env.VERI_DIZINI || "/data";
 const KAYIT_DOSYASI = path.join(VERI_DIZINI, "beta-kayitlari.json");
 const BETA_SIFRE = process.env.BETA_SIFRE || "";
 const BETA_WEBHOOK = process.env.BETA_WEBHOOK || "";
-const SHEETS_WEBHOOK = process.env.SHEETS_WEBHOOK || "";
+// Coolify'a yapıştırırken gelebilecek tırnak ve boşlukları temizle
+const SHEETS_WEBHOOK = String(process.env.SHEETS_WEBHOOK || "").trim().replace(/^["']+|["']+$/g, "").trim();
+const SHEETS_ACIK = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(SHEETS_WEBHOOK);
 
 const TURLER = {
   ".html": "text/html; charset=utf-8",
@@ -99,7 +101,7 @@ function kayitlariYaz() {
 // ── Google Sheets'e gönderim. Başarısız olursa kayıt yine dosyada durur;
 // bir sonraki yeniden başlatmada bütün liste tekrar gönderilir.
 async function sheeteGonder(liste) {
-  if (!SHEETS_WEBHOOK.startsWith("https://") || !liste.length) return;
+  if (!SHEETS_ACIK || !liste.length) return;
   try {
     const yanit = await fetch(SHEETS_WEBHOOK, {
       method: "POST",
@@ -108,7 +110,12 @@ async function sheeteGonder(liste) {
       redirect: "follow",
       signal: AbortSignal.timeout(20000)
     });
-    if (!yanit.ok) console.error("Sheets gönderimi başarısız: HTTP", yanit.status);
+    const metin = await yanit.text();
+    if (!yanit.ok || !metin.includes('"tamam":true')) {
+      console.error("Sheets gönderimi başarısız: HTTP", yanit.status, metin.slice(0, 200));
+    } else {
+      console.log(`Sheets: ${liste.length} kayıt gönderildi -> ${metin}`);
+    }
   } catch (e) {
     console.error("Sheets gönderimi başarısız:", e.message);
   }
@@ -274,7 +281,10 @@ const sunucu = http.createServer(async (req, res) => {
   const yol = url.pathname;
 
   try {
-    if (yol === "/saglik") { res.writeHead(200, { "Content-Type": "text/plain" }); return res.end("ok\n"); }
+    if (yol === "/saglik") {
+      res.writeHead(200, { "Content-Type": "text/plain", "Cache-Control": "no-store" });
+      return res.end(`ok\nsheets: ${SHEETS_ACIK ? "acik" : SHEETS_WEBHOOK ? "adres-gecersiz" : "kapali"}\n`);
+    }
     if (yol === "/api/beta") {
       if (req.method !== "POST") { res.writeHead(405, { Allow: "POST" }); return res.end(); }
       return await betaKaydi(req, res);
@@ -293,7 +303,7 @@ const sunucu = http.createServer(async (req, res) => {
 });
 
 kayitlariYukle().then(() => {
-  sunucu.listen(PORT, () => console.log(`Güler Studio sitesi ${PORT} portunda çalışıyor`));
+  sunucu.listen(PORT, () => console.log(`Güler Studio sitesi ${PORT} portunda çalışıyor (Google Sheets: ${SHEETS_ACIK ? "açık" : "kapalı"})`));
   sheeteGonder(kayitlar);
 });
 
