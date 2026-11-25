@@ -242,6 +242,19 @@ function yonetimCsv(req, res, oyunFiltresi) {
   res.end(csv);
 }
 
+// Instagram gibi uygulamalar linkteki "#" işaretini "%23" olarak kodlayabiliyor
+// (gulerstudio.dev/%23gece-avcilari-beta). Ayrıca /buyuk-yemin, /gece-avcilari-beta
+// gibi kısa adresler de ilgili bölüme gitsin.
+function kisaYolHedefi(yol) {
+  let cozulmus;
+  try { cozulmus = decodeURIComponent(yol); } catch { return ""; }
+  const parca = cozulmus.replace(/^\/+/, "").replace(/\/+$/, "").replace(/^#/, "").toLowerCase();
+  const m = /^([a-z0-9-]+?)(-beta)?$/.exec(parca);
+  if (m && OYUNLAR.has(m[1])) return "/#" + parca;
+  if (cozulmus.startsWith("/#")) return "/";
+  return "";
+}
+
 async function statik(req, res, yol) {
   let dosya;
   try {
@@ -269,6 +282,8 @@ async function statik(req, res, yol) {
     if (req.method === "HEAD") return res.end();
     fs.createReadStream(dosya).pipe(res);
   } catch {
+    const hedef = kisaYolHedefi(yol);
+    if (hedef) { res.writeHead(302, { Location: hedef, "Cache-Control": "no-cache" }); return res.end(); }
     ortakBasliklar(res, yol);
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" });
     fs.createReadStream(path.join(KOK, "404.html")).on("error", () => res.end("404")).pipe(res);
